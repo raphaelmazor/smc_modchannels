@@ -57,7 +57,8 @@ chan_csci_asci<-lustations_df %>%
   left_join(asci_df2) 
 
 hard_good_csci<-chan_csci_asci %>%
-  filter(class_do=="Hard bottom") %>%
+  # filter(class_do=="Hard bottom") %>%
+  filter(class_do!="Natural") %>%
   # filter(CSCI >= 0.79 | ASCI_H>=0.86 | ASCI_D >= 0.86) %>%
   mutate(csci_p = CSCI >= 0.79,
          asci_h_p = ASCI_H>=0.86,
@@ -65,7 +66,8 @@ hard_good_csci<-chan_csci_asci %>%
   filter(csci_p) %>% select(masterid)
 
 hard_good_asci_h<-chan_csci_asci %>%
-  filter(class_do=="Hard bottom") %>%
+  # filter(class_do=="Hard bottom") %>%
+  filter(class_do!="Natural") %>%
   # filter(CSCI >= 0.79 | ASCI_H>=0.86 | ASCI_D >= 0.86) %>%
   mutate(csci_p = CSCI >= 0.79,
          asci_h_p = ASCI_H>=0.86,
@@ -73,7 +75,8 @@ hard_good_asci_h<-chan_csci_asci %>%
   filter(asci_h_p) %>% select(masterid)
 
 hard_good_asci_d<-chan_csci_asci %>%
-  filter(class_do=="Hard bottom") %>%
+  # filter(class_do=="Hard bottom") %>%
+  filter(class_do!="Natural") %>%
   # filter(CSCI >= 0.79 | ASCI_H>=0.86 | ASCI_D >= 0.86) %>%
   mutate(csci_p = CSCI >= 0.79,
          asci_h_p = ASCI_H>=0.86,
@@ -100,3 +103,6 @@ gen_data_asci_h<-gen_data %>%
 write_csv(gen_data_csci, "Data/HighScoringModChannels/hard_good_csci.csv")
 write_csv(gen_data_asci_d, "Data/HighScoringModChannels/hard_good_asci_d.csv")
 write_csv(gen_data_asci_h, "Data/HighScoringModChannels/hard_good_asci_h.csv")
+
+gen_data %>%
+  filter(masterid %in% c("904M21782"))
